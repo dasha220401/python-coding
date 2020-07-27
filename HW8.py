@@ -36,19 +36,13 @@ else:
     print("Угадали!")
 
 
-
-
 import json
+import datetime
 
 
 def get(number, trials):
+    dct = {"число": number, "попытка": trials, "время": str(datetime.datetime.now())}
+    print(dict)
 
-
-dct = {"число": 9, "попытка": 9, "время": str(datetime.now())}
-print(dict)
-
-
-with open('trials.json', 'r') as file:
-
-    json.dump(dct)
-
+    with open('trials.json', 'w') as file:
+        json.dump(dct, file, indent=4)
