@@ -1,6 +1,7 @@
 import random
 from array import array
 
+
 # ф-ция возвращает True если выиграли, False- если нет
 def game_loop(dices_sum):
     for i in range(10):
@@ -24,8 +25,10 @@ def game_loop(dices_sum):
 
     return False
 
+
 def get_continue_condition(res1, res2):
     return 'yes' if res1 == res2 else input("Would you like to continue? (yes/no) ")
+
 
 res1 = 0
 res2 = 0

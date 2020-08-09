@@ -39,12 +39,13 @@ else:
 
 
 import json
-
+import datetime
 
 def get(number, trials):
 
 
-dct = {"число": 9, "попытка": 9, "время": str(datetime.now())}
+
+Dict = {"число": 9, "попытка": 9, "время": str(datetime.now())}
 print(dict)
 
 
