@@ -81,42 +81,42 @@ class TodoList:
                 tasks.append(task.as_dict())
              json.dump(tasks, file, indent=4)
 
-    def init_todo_list():
-        list_name = input('list_name')
-        owner = input('Owner:')
-        return TodoList(list_name, owner)
+def init_todo_list():
+    list_name = input('list_name')
+    owner = input('Owner:')
+    return TodoList(list_name, owner)
 
-    def main():
-        todo_list = init_todo_list()
-        try:
-            while True:
-                action = input('Choose your action - add tasks ("add"; view ("tasks") or , '
-                               '("tasks_not_ready"), note("done_task"); exit ("exit"): ')
-                if action == 'add':
-                    done = input('Choose status of action ("1 or 0"): ')
-                    if done not in {'1', '0'}:
-                        continue
-                    done = bool(int(done))
-                    info = input('Which task is it?: ')
-                    dead_line_entry = input('Enter deadline in YYYY-MM-DD HH:MM format: ')
-                    dead_line = datetime.strptime(dead_line_entry, "%Y-%m-%d %H: %M")
-                    now = datetime.now()
-                    last_updated = now.strftime("%Y-%m-%d %H:%M")
-                    delta_time = str(dead_line - now)
-                    todo_list.add_task(Item(done, info, last_updated, dead_line, delta_time))
-                  elif action == 'tasks':
-                     print(todo_list.tasks_list)
-                  elif action == 'tasks_not_ready':
-                     print(todo_list.not_ready_tasks)
-                  elif action == 'done_task':
-                      index = int(input('Chose index of the task that you have done: '))
-                      todo_list.done_task(index)
+def main():
+    todo_list = init_todo_list()
+    try:
+        while True:
+            action = input('Choose your action - add tasks ("add"; view ("tasks") or , '
+                           '("tasks_not_ready"), note("done_task"); exit ("exit"): ')
+            if action == 'add':
+                done = input('Choose status of action ("1 or 0"): ')
+                if done not in {'1', '0'}:
+                    continue
+                done = bool(int(done))
+                info = input('Which task is it?: ')
+                dead_line_entry = input('Enter deadline in YYYY-MM-DD HH:MM format: ')
+                dead_line = datetime.strptime(dead_line_entry, "%Y-%m-%d %H: %M")
+                now = datetime.now()
+                last_updated = now.strftime("%Y-%m-%d %H:%M")
+                delta_time = str(dead_line - now)
+                todo_list.add_task(Item(done, info, last_updated, dead_line, delta_time))
+              elif action == 'tasks':
+                 print(todo_list.tasks_list)
+              elif action == 'tasks_not_ready':
+                 print(todo_list.not_ready_tasks)
+              elif action == 'done_task':
+                  index = int(input('Chose index of the task that you have done: '))
+                  todo_list.done_task(index)
 
-                  elif action == 'exit':
-                       todo_list.to_json()
-                       return
-    except Exception:
-        todo_list.to_json()
+              elif action == 'exit':
+                   todo_list.to_json()
+                   return
+except Exception:
+    todo_list.to_json()
 
 
 if __name__ == '__main__':
